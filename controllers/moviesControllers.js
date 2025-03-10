@@ -20,7 +20,19 @@ const index = (req, res) => {
 
         if (err) return res.status(500).json({ error: 'Database query failed' });
 
-        res.json(results);
+
+        const movies = results.map(movie => {
+
+            return {
+
+                ...movie,
+                image: req.imagePath + movie.image
+
+            }
+
+        })
+
+        res.json(movies);
 
     })
 
@@ -44,10 +56,10 @@ const show = (req, res) => {
     `
 
     const movieDetailsSql = `
-        SELECT * 
-        FROM reviews 
-        WHERE reviews.movie_id = ?
-        `
+    SELECT * 
+    FROM reviews 
+    WHERE reviews.movie_id = ?
+    `
 
     connection.query(movieDetails, [id], (err, results) => {
 
@@ -64,7 +76,7 @@ const show = (req, res) => {
 
             if (err) return res.status(500).json({ error: 'Database query failed' });
 
-            movieDetails.reviews = results;
+            movie.reviews = results;
 
             res.json(movie);
 

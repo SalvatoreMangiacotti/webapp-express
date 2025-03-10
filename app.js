@@ -1,14 +1,19 @@
 /* Express */
 
-const express = require('express')
+const express = require('express');
 
-const app = express()
+const app = express();
 
-const port = process.env.PORT
+const port = process.env.PORT;
 
 /* Routes */
 
-const moviesRoutes = require('./routes/moviesRoutes')
+const moviesRoutes = require('./routes/moviesRoutes');
+
+
+/* Images path */
+
+const imagesPath = require('./middlewares/imagePath');
 
 
 /* CORS */
@@ -29,6 +34,11 @@ app.use(express.static('public'));
 // Middleware - Parsing json
 
 app.use(express.json());
+
+
+// Middleware - Images path
+
+app.use(imagesPath);
 
 
 // Main Route
