@@ -15,7 +15,7 @@ router.get('/', index);
 
 // Show
 
-// router.get('/:id', show);
+router.get('/:id', show);
 
 
 // // Store

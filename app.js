@@ -4,7 +4,11 @@ const express = require('express')
 
 const app = express()
 
-const port = 3000
+const port = process.env.PORT
+
+/* Routes */
+
+const moviesRoutes = require('./routes/moviesRoutes')
 
 
 /* CORS */
@@ -34,6 +38,9 @@ app.get('/', (req, res) => {
     res.send('Movies Server')
 
 })
+
+
+app.use("/api/movies", moviesRoutes)
 
 
 // Server Start
