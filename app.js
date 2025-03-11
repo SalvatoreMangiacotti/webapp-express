@@ -14,7 +14,7 @@ const moviesRoutes = require('./routes/moviesRoutes');
 
 /* Images path */
 
-const imagesPath = require('./middlewares/imagePath');
+const imagesPath = require('./middlewares/imagesPath');
 
 
 /* CORS */
@@ -44,7 +44,7 @@ app.use(imagesPath);
 
 // Main Route
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
 
     res.send('Movies Server')
 

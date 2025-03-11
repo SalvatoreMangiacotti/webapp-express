@@ -49,7 +49,7 @@ const show = (req, res) => {
 
     // Query request
 
-    const movieDetails = `
+    const moviesSql = `
     SELECT * 
     FROM movies 
     WHERE movies.id = ?
@@ -61,7 +61,7 @@ const show = (req, res) => {
     WHERE reviews.movie_id = ?
     `
 
-    connection.query(movieDetails, [id], (err, results) => {
+    connection.query(moviesSql, [id], (err, results) => {
 
         // Query error
 
@@ -77,6 +77,12 @@ const show = (req, res) => {
             if (err) return res.status(500).json({ error: 'Database query failed' });
 
             movie.reviews = results;
+
+            // Images path
+
+            movie.image = req.imagePath + movie.image
+
+            // Result
 
             res.json(movie);
 
