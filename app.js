@@ -6,6 +6,8 @@ const app = express();
 
 const port = process.env.PORT;
 
+const cors = require('cors');
+
 
 /* Routes */
 
@@ -19,7 +21,7 @@ const imagesPath = require('./middlewares/imagesPath');
 
 /* CORS */
 
-// app.use(cors())
+app.use(cors({ origin: process.env.FE_APP }))
 
 
 // Middleware - Cors Specific Route
