@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Destructuring
 
-const { index, show, store, update, modify, destroy } = require('../controllers/moviesControllers');
+const { index, show, storeReview, store, update, modify, destroy } = require('../controllers/moviesControllers');
 
 
 // Index
@@ -18,9 +18,9 @@ router.get('/', index);
 router.get('/:id', show);
 
 
-// // Store
+// Store
 
-// router.post('/', store);
+router.post('/:id/reviews', storeReview);
 
 
 // // Update
