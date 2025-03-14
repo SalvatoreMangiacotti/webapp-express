@@ -2,6 +2,9 @@ const express = require('express');
 
 const router = express.Router();
 
+// Multer
+
+const upload = require('../middlewares/multer')
 
 // Destructuring
 
@@ -18,9 +21,13 @@ router.get('/', index);
 router.get('/:id', show);
 
 
-// Store
+// Store Review
 
 router.post('/:id/reviews', storeReview);
+
+// Store
+
+router.post('/', upload.single('image'), store);
 
 
 // // Update

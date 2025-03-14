@@ -122,11 +122,38 @@ const storeReview = (req, res) => {
 }
 
 
-// // Store
+// Store
 
-// const store = (req, res) => {
+const store = (req, res, next) => {
 
-// }
+    const { title, director, abstract } = req.body;
+
+    // handle name file value created from middleware
+
+    const imageName = `${req.file.filename}`;
+
+    // Insert query
+
+    const query = `
+    INSERT INTO movies (title, director, image, abstract)
+    VALUES(?, ?, ?, ?)
+    `
+
+    connection.query(query, [title, director, imageName, abstract],
+        (err, result) => {
+            if (err) {
+                console.log(err)
+                return next(new Error("Server internal error"));
+            }
+
+            res.status(201).json({
+                status: "success",
+                message: "Movie created - success!"
+            })
+        }
+    )
+
+}
 
 
 // // Update
@@ -154,7 +181,7 @@ module.exports = {
     index,
     show,
     storeReview,
-    // store,
+    store,
     // update,
     // modify,
     // destroy
